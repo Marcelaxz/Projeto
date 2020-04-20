@@ -4,18 +4,18 @@ public class Empregado {
     private long id_empregado;
     private String nome_emp;
     private String cargo;
-    private long salario;
+    private double salario;
 
     public Empregado(){ }
 
-    public Empregado(long id_empregado, String nome_emp, String cargo, long salario){
+    public Empregado(long id_empregado, String nome_emp, String cargo, double salario){
         this.id_empregado = id_empregado;
         this.nome_emp = nome_emp;
         this.cargo = cargo;
         this.salario = salario;
     }
 
-    public long getId_empregado(long l) { return id_empregado; }
+    public long getId_empregado() { return id_empregado; }
 
     public void setId_empregado(long id_empregado) {
         this.id_empregado = id_empregado;
@@ -37,11 +37,20 @@ public class Empregado {
         this.cargo = cargo;
     }
 
-    public long getSalario() {
+    public double getSalario() {
         return salario;
     }
 
-    public void setSalario(long salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
+    }
+
+    @Override
+    public String toString() {
+        return "Empregado " +
+                "\n\tID do Empregado: " + id_empregado +
+                "\n\tNome do Empregado: " + nome_emp +
+                "\n\tCargo: " + cargo +
+                "\n\tSalário: " + salario;
     }
 }

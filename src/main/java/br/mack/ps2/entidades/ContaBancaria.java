@@ -54,6 +54,8 @@ public class ContaBancaria {
                 "\n\tID da conta: " + id_conta +
                 "\n\tNome do Titular: " + nome_titular +
                 "\n\tSaldo: " + saldo +
-                "\n\tNúmero da Agencia: " + n_agencia;
+                "\n\tNúmero da Agencia: " + n_agencia +
+                "\n";
+
     }
 }

@@ -3,7 +3,7 @@ package br.mack.ps2;
 import br.mack.ps2.persistencia.ContaBancariaDAOMySQL;
 import br.mack.ps2.persistencia.JogoDAOMySQL;
 import br.mack.ps2.persistencia.EmpregadoDAOMySQL;
-import java.sql.*;
+
 import java.util.*;
 
 public class App 
@@ -25,13 +25,13 @@ public class App
 
             switch (opc) {
                 case 1:
-                    ContaBancariaDAOMySQL mysqlDAO = new ContaBancariaDAOMySQL();
-                    InterfaceUsuario interfaceUsuario = new InterfaceUsuario(mysqlDAO);
-                    interfaceUsuario.iniciar();
+                    ContaBancariaDAOMySQL mysqlDAOCB = new ContaBancariaDAOMySQL();
+                    InterfaceUsuarioCB interfaceUsuarioCB = new InterfaceUsuarioCB(mysqlDAOCB);
+                    interfaceUsuarioCB.iniciar();
                     break;
                 case 2:
-                    EmpregadoDAOMySQL mySQL = new EmpregadoDAOMySQL();
-                    InterfaceUsuarioEmpregado interfaceUsuarioEmpregado = new InterfaceUsuarioEmpregado();
+                    EmpregadoDAOMySQL mysqlDAOEmp = new EmpregadoDAOMySQL();
+                    InterfaceUsuarioEmpregado interfaceUsuarioEmpregado = new InterfaceUsuarioEmpregado(mysqlDAOEmp);
                     interfaceUsuarioEmpregado.iniciar();
                     break;
                 case 3:

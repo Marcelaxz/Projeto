@@ -8,7 +8,7 @@ public class InterfaceUsuarioEmpregado {
     EmpregadoDAO dao;
     Scanner in;
 
-    public InterfaceUsuario(EmpregadoDAO dao){
+    public InterfaceUsuarioEmpregado(EmpregadoDAO dao){
         this.dao = dao;
         this.in = new Scanner(System.in);
     }
@@ -60,14 +60,14 @@ public class InterfaceUsuarioEmpregado {
 
         System.out.println("\n--------- Novo Empregado ---------");
         System.out.print("\nInforme o Nome do Empregado: ");
-        empregado.setNome_emp(in.nextLine());
+        empregado.setNome_emp(in.next());
         in.nextLine();
 
         System.out.print("Informe o Cargo do Empregado: ");
-        empregado.setCargo(in.nextLine());
+        empregado.setCargo(in.next());
 
         System.out.print("Informe o Salário do Empregado: ");
-        empregado.setSalario(in.nextLong());
+        empregado.setSalario(in.nextDouble());
 
         if (dao.create(empregado)) {
             System.out.println("Empregado adicionado com sucesso!");
@@ -107,7 +107,7 @@ public class InterfaceUsuarioEmpregado {
             empregado.setCargo(in.nextLine());
 
             System.out.print("Digite o Salário do Empregado: ");
-            empregado.setSalario(in.nextLong());
+            empregado.setSalario(in.nextDouble());
 
             if (dao.update(empregado)) {
                 System.out.println("\nEmpregado atualizado com sucesso!");

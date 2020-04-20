@@ -6,11 +6,11 @@ import br.mack.ps2.persistencia.ContaBancariaDAO;
 import java.sql.*;
 import java.util.*;
 
-public class InterfaceUsuario {
+public class InterfaceUsuarioCB {
     ContaBancariaDAO dao;
     Scanner in;
 
-    public InterfaceUsuario(ContaBancariaDAO dao) {
+    public InterfaceUsuarioCB(ContaBancariaDAO dao) {
         this.dao = dao;
         this.in = new Scanner(System.in);
     }
@@ -100,16 +100,16 @@ public class InterfaceUsuario {
 
             System.out.print("\nInforme o ID da Conta Bancária: ");
             conta.setId_conta(in.nextLong());
-             in.nextLine();
+            in.nextLine();
 
             System.out.print("Informe o Nome do Titular: ");
             conta.setNome_titular(in.next());
 
-             System.out.print("Informe o Saldo: ");
-             conta.setSaldo(in.nextDouble());
+            System.out.print("Informe o Saldo: ");
+            conta.setSaldo(in.nextDouble());
 
-             System.out.print("Informe o Número da Conta: ");
-             conta.setN_agencia(in.nextInt());
+            System.out.print("Informe o Número da Conta: ");
+            conta.setN_agencia(in.nextInt());
 
              if (dao.update(conta)) {
                 System.out.println("\nConta Bancária atualizada com sucesso!");
@@ -130,7 +130,7 @@ public class InterfaceUsuario {
                 System.out.println(i + " - " + conta);
                 i++;
             }
-            System.out.println(i + " - Cancelar Operação");
+            System.out.println(i + " - Cancelar Operação\n");
 
             System.out.print("Qual Conta Bancária deseja remover? ");
             int opc = in.nextInt();
