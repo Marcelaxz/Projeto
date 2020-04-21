@@ -3,7 +3,6 @@ package br.mack.ps2;
 import br.mack.ps2.entidades.Jogo;
 import br.mack.ps2.persistencia.JogoDAO;
 
-import java.sql.*;
 import java.util.*;
 
 public class InterfaceUsuarioJogo {
@@ -133,7 +132,7 @@ public class InterfaceUsuarioJogo {
         List<Jogo> jogos = dao.read();
 
         while (true) {
-            System.out.println("\n--------- Lista de Contas Cadastradas ---------");
+            System.out.println("\n--------- Lista de Jogos Cadastrados ---------");
             int i = 0;
             for (Jogo jogo : jogos) {
                 System.out.println(i + " - " + jogo);

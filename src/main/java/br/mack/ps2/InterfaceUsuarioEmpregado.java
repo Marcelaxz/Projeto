@@ -1,8 +1,8 @@
 package br.mack.ps2;
-import br.mack.ps2.entidades.ContaBancaria;
+
 import br.mack.ps2.entidades.Empregado;
 import br.mack.ps2.persistencia.EmpregadoDAO;
-import java.sql.*;
+
 import java.util.*;
 public class InterfaceUsuarioEmpregado {
     EmpregadoDAO dao;

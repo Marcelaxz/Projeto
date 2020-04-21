@@ -1,5 +1,5 @@
 package br.mack.ps2.persistencia;
-import br.mack.ps2.entidades.ContaBancaria;
+
 import br.mack.ps2.entidades.Empregado;
 import java.util.*;
 

@@ -1,9 +1,7 @@
 
 package br.mack.ps2.persistencia;
 
-import br.mack.ps2.entidades.ContaBancaria;
 import br.mack.ps2.entidades.Jogo;
-import br.mack.ps2.persistencia.MySQLConnection;
 
 import java.sql.*;
 import java.util.ArrayList;

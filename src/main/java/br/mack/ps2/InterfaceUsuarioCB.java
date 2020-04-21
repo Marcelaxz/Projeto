@@ -3,7 +3,7 @@ package br.mack.ps2;
 import br.mack.ps2.entidades.ContaBancaria;
 import br.mack.ps2.persistencia.ContaBancariaDAO;
 
-import java.sql.*;
+
 import java.util.*;
 
 public class InterfaceUsuarioCB {
