@@ -1,19 +1,18 @@
 package br.mack.ps2;
 
-import br.mack.ps2.entidades.ContaBancaria;
 import br.mack.ps2.entidades.Jogo;
 import br.mack.ps2.persistencia.JogoDAO;
 
-import java.util.List;
-import java.util.Scanner;
+import java.sql.*;
+import java.util.*;
 
 public class InterfaceUsuarioJogo {
     JogoDAO dao;
-    Scanner input;
+    Scanner in;
 
     public InterfaceUsuarioJogo(JogoDAO dao) {
         this.dao = dao;
-        this.input = new Scanner(System.in);
+        this.in = new Scanner(System.in);
     }
 
     public void iniciar() {
@@ -23,19 +22,16 @@ public class InterfaceUsuarioJogo {
     private void imprimirMenu() {
         int opc = 0;
         do {
-            System.out.println("\n==============");
-            System.out.println("==== Menu ====");
-            System.out.println("==============");
-            System.out.println("\t1. Create");
-            System.out.println("\t2. Read");
-            System.out.println("\t3. Update");
-            System.out.println("\t4. Delete");
-            System.out.println("\t5. sair");
-            System.out.print("Escolha uma opção: ");
-            opc = input.nextInt();
+            System.out.println("\n======== Menu ========");
+            System.out.println("\t1. Criar registro para Jogo");
+            System.out.println("\t2. Consultar registro de Jogo");
+            System.out.println("\t3. Atualizar registro de Jogo");
+            System.out.println("\t4. Deletar Jogo");
+            System.out.println("\t5. Sair");
+            System.out.print("Escolha uma opção:_ ");
+            opc = in.nextInt();
 
-            //necessário para ler a quebra de linha (enter)
-            input.nextLine();
+            in.nextLine();
 
             switch (opc) {
                 case 1:
@@ -51,49 +47,46 @@ public class InterfaceUsuarioJogo {
                     this.delete();
                     break;
                 case 5:
-                    System.out.println("Fim do programa!");
+                    System.out.println("Operação finalizada");
                     break;
                 default:
-                    System.out.println("Opção Inválida!");
+                    System.out.println("Opção Inválida");
                     break;
             }
 
-        } while (opc != 5);
+        }while (opc != 5);
     }
 
     private void create() {
-        Jogo jogos = new Jogo();
+        Jogo jogo = new Jogo();
 
-        System.out.println("==== Inserir ====");
-        System.out.print("\nInforme o id: ");
-        jogos.setIdJogo(input.nextLong());
-        //necessário para ler o \n da entrada (enter)
-        input.nextLine();
+        System.out.println("\n--------- Novo registro para Jogo ---------");
+        System.out.print("\nInforme o Nome do Primeiro Time: ");
+        jogo.setNm_timeA(in.next());
+        in.nextLine();
 
-        System.out.print("Informe o nome do Primeiro time: ");
-        jogos.setNm_timeA(input.nextLine());
+        System.out.print("\nInforme o Nome do Segundo Time: ");
+        jogo.setNm_timeB(in.next());
+        in.nextLine();
 
-        System.out.print("Informe o nome do Segundo time: ");
-        jogos.setNm_timeB(input.nextLine());
+        System.out.print("\nInforme a Pontuação do Primeiro Time: ");
+        jogo.setPont_timeA(in.nextInt());
 
-        System.out.println("Pontuação do Primeiro time: ");
-        jogos.setPont_timeA(input.nextInt());
+        System.out.print("\nInforme a Pontuação do Segundo Time: ");
+        jogo.setPont_timeB(in.nextInt());
 
-        System.out.println("Pontuação do Segundo time: ");
-        jogos.setPont_timeB(input.nextInt());
-
-        if (dao.create(jogos)) {
-            System.out.println("Dados inseridos na tabela Jogo com sucesso");
+        if (dao.create(jogo)) {
+            System.out.println("Jogo adicionado ao banco de Dados");
         } else {
-            System.out.println("Problema ao adicionar dados na tabela Jogo");
+            System.out.println("Ops: problema ao adicionar a Jogo");
         }
     }
 
     private void read() {
         List<Jogo> jogos = dao.read();
 
-        System.out.println("==== Ler dados ====");
-        for (Jogo jogo : jogos) {
+        System.out.println("\n--------- Lista de Jogos Cadastrados ---------");
+        for(Jogo jogo : jogos) {
             System.out.println(jogo);
         }
     }
@@ -102,33 +95,35 @@ public class InterfaceUsuarioJogo {
         Jogo jogo = new Jogo();
 
         while(true){
-            System.out.println("==== Alterar ====");
             read();
             System.out.println("\nPara cancelar a operação, digite 1: ");
-            int cnl = input.nextInt();
+            int cnl = in.nextInt();
             if (cnl == 1) {
                 break;
             }
-            System.out.print("Informe o nome do Primeiro Time: ");
-            jogo.setNm_timeA(input.next());
 
-            System.out.print("Informe o nome do Segundo Time: ");
-            jogo.setNm_timeB(input.next());
+            System.out.print("\nInforme o ID de Jogo registrado: ");
+            jogo.setIdJogo(in.nextLong());
+            in.nextLine();
 
-            System.out.print("Informe a pontuação do Primeiro time: ");
-            jogo.setPont_timeA(input.nextInt());
+            System.out.print("\nInforme o Nome do Primeiro Time: ");
+            jogo.setNm_timeA(in.next());
+            in.nextLine();
 
-            System.out.print("Informe a pontuação do Primeiro time: ");
-            jogo.setPont_timeB(input.nextInt());
+            System.out.print("\nInforme o Nome do Segundo Time: ");
+            jogo.setNm_timeB(in.next());
+            in.nextLine();
 
-            System.out.print("\nInforme o ID da Conta Bancária: ");
-            jogo.setIdJogo(input.nextLong());
-            input.nextLine();
+            System.out.print("\nInforme a Pontuação do Primeiro Time: ");
+            jogo.setPont_timeA(in.nextInt());
+
+            System.out.print("\nInforme a Pontuação do Segundo Time: ");
+            jogo.setPont_timeB(in.nextInt());
 
             if (dao.update(jogo)) {
-                System.out.println("\nConta Bancária atualizada com sucesso!");
+                System.out.println("\nJogo atualizado com sucesso!");
             } else {
-                System.out.println("\nOcorreu um problema ao atualizar a Conta Bancária");
+                System.out.println("\nOcorreu um problema ao atualizar o Jogo");
             }
         }
 
@@ -138,22 +133,19 @@ public class InterfaceUsuarioJogo {
         List<Jogo> jogos = dao.read();
 
         while (true) {
-
-            System.out.println("==== Deletar ====");
+            System.out.println("\n--------- Lista de Contas Cadastradas ---------");
             int i = 0;
             for (Jogo jogo : jogos) {
                 System.out.println(i + " - " + jogo);
                 i++;
             }
-            System.out.println(i + " - Cancelar operação");
+            System.out.println(i + " - Cancelar Operação\n");
 
-            System.out.print("Qual id deseja remover? ");
-            int opc = input.nextInt();
-            //Necessário para ler a quebra de linha (enter)
-            input.nextLine();
+            System.out.print("Qual registro de Jogo deseja remover? ");
+            int opc = in.nextInt();
+            in.nextLine();
 
-            if (opc == i) {
-                // Cancelar operação
+            if (opc==i) {
                 break;
             }
 
@@ -161,14 +153,13 @@ public class InterfaceUsuarioJogo {
                 System.out.println("Esta opção não é válida");
             } else {
                 if (dao.delete(jogos.get(opc))) {
-                    System.out.println("Id " + jogos.get(opc).getIdJogo() +
-                            " removido com sucesso");
+                    System.out.println("Jogo removido com sucesso");
                 } else {
-                    System.out.println("Falha ao tentar remover");
+                    System.out.println("OPS: falar ao tentar remover");
                 }
-                //Isso para o while infinito
                 break;
             }
         }
     }
 }
+
