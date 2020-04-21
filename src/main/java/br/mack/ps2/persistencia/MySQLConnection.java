@@ -8,7 +8,7 @@ public class MySQLConnection {
 
     public Connection getConnection() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             return DriverManager.getConnection(url, usuario, senha);
         } catch (final Exception ex) {
             ex.printStackTrace();
